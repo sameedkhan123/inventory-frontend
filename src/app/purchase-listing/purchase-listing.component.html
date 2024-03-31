@@ -1,0 +1,47 @@
+<div class="container">
+    <h4>
+      Purchase Listing
+      <button class="btn btn-success btn-sm" (click)="openPurchaseModal()">
+        <i class="bi bi-plus"></i> Add Purchase
+      </button>
+    </h4>
+  
+    <!-- Purchase Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Purchase Date</th>
+          <th>Supplier</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Iterate over purchase items and display them -->
+        <tr *ngFor="let purchase of this.purchaseListDto">
+          <td>{{ purchase.productName }}</td>
+          <td>{{ purchase.quantity }}</td>
+          <td>{{ purchase.purchaseDate | date:'dd/mm/yyyy' }}</td>
+          <td>{{ purchase.quantity }}</td>
+          <td><button class="btn btn-danger btn-sm" (click)="deletePurchase(purchase)">Delete</button></td>
+          <!-- Display more purchase details as needed -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+
+  <ng-template #addPrurchaseModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Add Purchase</h4>
+      <button type="button" class="close" (click)="closeModal()">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-add-purchase></app-add-purchase>
+    </div>
+  
+  </ng-template>
+  

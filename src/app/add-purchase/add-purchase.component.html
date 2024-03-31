@@ -1,0 +1,30 @@
+<form [formGroup]="purchaseForm" (ngSubmit)="submitForm()">
+  <div class="mb-3">
+    <label for="product" class="form-label">Product</label>
+    <select class="form-select" id="product" formControlName="product">
+      <option *ngFor="let product of this.productList" [value]="product.productId">{{ product.productName }}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="supplierName" class="form-label">Supplier Name</label>
+    <select class="form-select" id="supplierName" formControlName="supplierName">
+      <option *ngFor="let supplier of this.supplierList" [value]="supplier.supplierId">{{ supplier.name }}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="purchaseDate" class="form-label">Purchase Date</label>
+    <input type="date" class="form-control" id="purchaseDate" formControlName="purchaseDate">
+    <div *ngIf="purchaseForm.get('purchaseDate')?.invalid && (purchaseForm.get('purchaseDate')?.dirty || purchaseForm.get('purchaseDate')?.touched)" class="text-danger">
+      <div *ngIf="purchaseForm.get('purchaseDate')?.errors?.['required']">Purchase Date is required</div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="quantity" class="form-label">Quantity</label>
+    <input type="number" class="form-control" id="quantity" formControlName="quantity">
+    <div *ngIf="purchaseForm.get('quantity')?.invalid && (purchaseForm.get('quantity')?.dirty || purchaseForm.get('quantity')?.touched)" class="text-danger">
+      <div *ngIf="purchaseForm.get('quantity')?.errors?.['required']">Quantity is required</div>
+    </div>
+  </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  
+</form>

@@ -1,0 +1,55 @@
+<div class="row" style="margin-bottom: 10px;">
+
+</div>
+<div class="container">
+  <h5 >
+    Purchase Listing
+    <button class="btn btn-success btn-sm" (click)="openAddProductModal()">
+      <i class="bi bi-plus"></i> Add Product
+    </button>
+  </h5>
+  <table class="table col-md-9" style="text-align: center;align-items: center;">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of this.productList">
+        <th >{{item.productName}}</th>
+        <td>{{item.description}}</td>
+        <td>
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Action
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" (click)="editPrduct(item)">Eidt</a></li>
+              <li><a class="dropdown-item"  (click)="deleteProduct(item)">Delete</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+<ng-template #addProductModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add Product</h4>
+    <button type="button" class="close" (click)="closeModal()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-add-product [product]="selectedProduct"></app-add-product>
+  </div>
+
+</ng-template>
